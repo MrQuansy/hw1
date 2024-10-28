@@ -5,8 +5,7 @@ from typing import List, Optional, NamedTuple, Tuple, Union
 from collections import namedtuple
 import numpy
 
-from needle import init
-
+from needle import init 
 # needle version
 LAZY_MODE = False
 TENSOR_COUNTER = 0
@@ -393,14 +392,24 @@ def find_topo_sort(node_list: List[Value]) -> List[Value]:
     sort.
     """
     ### BEGIN YOUR SOLUTION
-    raise NotImplementedError()
+    visited = set()
+    topo_order = []
+    for node in node_list:
+        if node not in visited:
+            topo_sort_dfs(node, visited, topo_order)
+    
+    return topo_order
     ### END YOUR SOLUTION
 
 
 def topo_sort_dfs(node, visited, topo_order):
     """Post-order DFS"""
     ### BEGIN YOUR SOLUTION
-    raise NotImplementedError()
+    for input_node in node.inputs:
+        topo_sort_dfs(input_node, visited, topo_order)
+    if node not in visited:
+        topo_order.append(node)
+        visited.add(node)
     ### END YOUR SOLUTION
 
 
