@@ -384,6 +384,7 @@ def compute_gradient_of_variables(output_tensor, out_grad):
         if node.is_leaf():
             node.grad = grad
         elif node.inputs:
+            node.grad = grad
             input_grads = node.op.gradient_as_tuple(grad, node)
             for input_node, input_grad in zip(node.inputs, input_grads):
                 if input_node not in node_to_output_grads_list:
